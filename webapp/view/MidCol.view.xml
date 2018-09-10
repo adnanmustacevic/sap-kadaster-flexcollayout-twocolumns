@@ -1,0 +1,268 @@
+<m:View id="midView" displayBlock="true" controllerName="sap.kadaster.FlexibleColumnLayoutWithTwoColumns.controller.MidCol" height="100%"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.uxap"
+		xmlns:layout="sap.ui.layout"
+		xmlns:m="sap.m"
+		xmlns:f="sap.f"
+		xmlns:form="sap.ui.layout.form"
+		xmlns:controls="sap.kadaster.FlexibleColumnLayoutWithTwoColumns.controls">
+
+	<ObjectPageLayout id="ObjectPageLayout"
+					 showTitleInHeaderContent="true"
+					alwaysShowContentHeader="false"
+					preserveHeaderStateOnScroll="false"
+					headerContentPinnable="true"
+					isChildPage="true">
+                <headerTitle>
+                    <ObjectPageDynamicHeaderTitle>
+                        <expandedHeading>
+							<m:Title text="{employee>/Roepnaam} {employee>/Name} EXPANDED" wrapping="true" class="sapUiSmallMarginEnd"/>
+                        </expandedHeading>
+
+                        <snappedHeading>
+                            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+                                <m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+                                    <f:Avatar src="{employee>/PhotoUrl}" displaySize="S"/>
+                                    <m:Title text="{employee>/Roepnaam} {employee>/Name} SNAPPED" wrapping="true" class="sapUiTinyMarginEnd"/>
+                                </m:FlexBox>
+                            </m:FlexBox>
+                        </snappedHeading>
+
+                        <content width="75%">
+							<m:HBox>
+								<m:FlexBox direction="Column" alignItems="Start" justifyContent="Start">
+									<m:Text text="{employee>/PositionText}"/>
+									<m:Text text="{employee>/Directoraat}, {employee>/Subdirectoraat}"/>
+								</m:FlexBox>
+								<m:FlexBox direction="Column" alignItems="Start" justifyContent="End">
+									<m:items>
+										<m:HBox>
+											<core:Icon src="sap-icon://phone"/>
+											<m:Link id="lblPhone" text="{employee>/Telefoon}" press="onPhoneClick"/>
+										</m:HBox>
+										<m:HBox>				
+											<core:Icon src="sap-icon://iphone"/>				
+											<m:Link id="lblMobPhone" text="{employee>/Mobiel}" press="onMobPhoneClick"/>				
+										</m:HBox>
+					                    <m:HBox>
+						                    <core:Icon src="sap-icon://email"/>
+											<m:Link id="lblEmail" text="{employee>/Email}" press="onEmailClick"/>
+										</m:HBox>	
+									</m:items>
+								</m:FlexBox>
+							</m:HBox>
+                        </content>
+
+                        <navigationActions>
+                            <m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+                            <m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose"  tooltip="Close column" visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+                        </navigationActions>
+
+                    </ObjectPageDynamicHeaderTitle>
+                </headerTitle>
+
+                <headerContent>
+                    <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                        <f:Avatar src="{employee>/PhotoUrl}" displaySize="L"/>
+                    </m:FlexBox>
+                </headerContent>
+        <sections>		
+            <ObjectPageSection title="{i18n>PROFIEL_TITEL}">
+                <subSections>
+                    <ObjectPageSubSection title="{i18n>PROFIEL_TITEL}" mode="Expanded">
+                        <blocks>
+                            <form:Form width="100%" editable="false" visible="true">
+                                <form:title>
+                                    <core:Title text="{i18n>PERSOONS_GEGEVENS}" level="Auto"/>
+                                </form:title>
+                                <form:formContainers>
+                                    <form:FormContainer visible="true">
+                                        <form:formElements>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>ROEPNAAM}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/Roepnaam}" width="auto" maxLines="1" wrapping="true" textAlign="Initial" textDirection="LTR"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>ACHTERNAAM}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+	                                                    <m:Text text="{employee>/Name}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>DOORKIESNUMMER}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/Telefoon}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>MOBIELNUMMER}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/Mobiel}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>EMAIL_PERGEG_DISP}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <!--<m:Link href="{/Email}" text="{emailadres}" textAlign="Begin" width="auto" target="_blank" wrapping="true" enabled="true" visible="true" emphasized="false" subtle="false"/>-->
+													<m:Text text="{employee>/Email}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>                                                    
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>WERKROOSTER}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/Werkrooster}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>OVER_MIJ}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/OverMij}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                        </form:formElements>
+                                        <form:title/>
+                                    </form:FormContainer>
+                                </form:formContainers>
+                                <form:layout>
+                                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                                </form:layout>
+                            </form:Form>                                
+                        </blocks>                        	                    	
+                    </ObjectPageSubSection>                    	                	
+                </subSections>                         	
+            </ObjectPageSection>
+            <ObjectPageSection title="{i18n>ORGANISATIE}">
+                <subSections>
+                    <ObjectPageSubSection title="{i18n>ORGANISATIE}" mode="Expanded">
+                        <blocks>
+                            <form:Form width="100%" editable="false" visible="true">
+                                <form:title>
+                                    <core:Title text="{i18n>ORGANISATIE_GEGEVENS}" level="Auto"/>
+                                </form:title>
+                                <form:formContainers>
+                                    <form:FormContainer visible="true">
+                                        <form:formElements>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>FUNCTIE}" design="Standard" width="100%" required="false" textAlign="Initial" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/PositionText}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>  
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>ROL}" design="Standard" width="100%" required="false" textAlign="Initial" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/roles}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>AFDELING}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/Subdirectoraat}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>DIRECTIE}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/Directoraat}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>LOCATIE}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/Locatie}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>GEBOUW}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/GebouwNaam}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>KAMERNUMMER}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <m:Text text="{employee>/RoomNo}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>SECRETARIAATVAN}" wrapping="true" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="LTR"/>
+                                                </form:label>
+                                                <form:fields>
+                                                    <!--<m:Link href="{ID}" text="{/secretariaatVan}" textAlign="Begin" width="auto" target="_blank" wrapping="true" enabled="true" visible="true" emphasized="false" subtle="false"/>-->
+                                                    <m:Text text="{employee>/secretariaatVan}" width="auto" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit"/>                                                    
+                                                </form:fields>
+                                            </form:FormElement>
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>MANAGER}" design="Standard" width="100%" required="false" textAlign="Initial"/>
+                                                </form:label>
+                                                <form:fields>
+													<controls:LinkList id="manager" items="{employee>/linkItemsManager}">
+														<controls:items>
+															<controls:LinkListItem text="{text}" profileId="{profileId}" select="onLinkClick" width="10%"/>
+														</controls:items>
+													</controls:LinkList>                                                    
+                                                </form:fields>                                                
+                                            </form:FormElement>  
+                                            <form:FormElement visible="true">
+                                                <form:label>
+                                                    <m:Label text="{i18n>SECRETARIAAT}" design="Standard" width="100%" required="false" textAlign="Initial"/>
+                                                </form:label>
+                                                <form:fields>
+													<controls:LinkList items="{employee>/linkItemsSecretariaat}">
+														<controls:items>
+															<controls:LinkListItem text="{text}" profileId="{profileId}" select="onLinkClick"/>
+														</controls:items>
+													</controls:LinkList>                                                    
+                                                </form:fields>                                                
+                                            </form:FormElement>
+                                        </form:formElements>
+                                        <form:title/>
+                                    </form:FormContainer>
+                                </form:formContainers>
+                                <form:layout>
+                                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                                </form:layout>
+                            </form:Form>
+                        </blocks>
+                        <moreBlocks/>
+                        <actions/>
+                    </ObjectPageSubSection>
+                </subSections>  	            	
+            </ObjectPageSection>            	           			
+        </sections>	
+	</ObjectPageLayout>
+</m:View>

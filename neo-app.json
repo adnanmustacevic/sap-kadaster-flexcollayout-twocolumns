@@ -1,0 +1,44 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+  	{
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "Kadaster",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "DG1"
+    },
+    {
+      "path": "/sap/bc/ui5_ui5",
+      "target": {
+        "type": "destination",
+        "name": "Kadaster",
+        "entryPath": "/sap/bc/ui5_ui5"
+      },
+      "description": "DG1"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.52.4"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.52.4"
+      },
+      "description": "SAPUI5 Test Resources"
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

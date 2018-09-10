@@ -1,0 +1,64 @@
+<core:View displayBlock="true" controllerName="sap.kadaster.FlexibleColumnLayoutWithTwoColumns.controller.BeginCol" height="100%"
+	  xmlns="sap.m"
+	  xmlns:f="sap.f"
+	  xmlns:core="sap.ui.core">
+	<f:DynamicPage id="dynamicPageId"
+				   toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Products ({products>/ProductCollectionStats/Counts/Total})"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<VBox fitContainer="true">
+				<Toolbar>
+					<SearchField id="employeesSearch" search="onSearch" placeholder="{i18n>COLLEGA_ZOEKEN}" width="100%"/>
+<!--					<Button icon="sap-icon://add" type="Transparent" press="onAdd"/>
+					<Button icon="sap-icon://sort" type="Transparent" press="onSort"/>-->
+				</Toolbar>
+				<Table id="idEmployeesTable" inset="false" items="{/results}" >
+
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text=""/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Naam"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Functie"/>
+						</Column>
+					</columns>
+
+					<items>
+						<ColumnListItem vAlign="Middle" type="Navigation" press="handleRowSellect">
+							<cells>
+								<Image   src="{photoURL}" 	width="5em"/>
+								<VBox>
+									<ObjectIdentifier title="{Name}" text="{EmployeeNumber}"/>
+									<Text text="{PositionText}"/>
+								</VBox>
+								<Text text="{PositionText}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+<!--				<List id="list" mode="{device>/listMode}" select="handleListSelect" noDataText="{i18n>NO_DATA_FOUND}" width="100%" items="{/results}">
+					<ObjectListItem type="{device>/listItemType}" press="handleListItemPress" intro="" title="{Roepnaam} {Name}" icon="{photoURL}">
+						<firstStatus>
+							<ObjectStatus title="" icon="sap-icon://email" text="{OfficeEmail}" state="None"/>
+						</firstStatus>
+						<secondStatus>
+							<ObjectStatus title="" icon="sap-icon://phone" text="{Telefoon}" state="None"/>
+						 </secondStatus>
+					</ObjectListItem>
+				</List>-->
+			</VBox>
+		</f:content>
+	</f:DynamicPage>
+</core:View>
